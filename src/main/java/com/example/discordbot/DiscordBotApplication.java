@@ -29,7 +29,7 @@ public class DiscordBotApplication {
 
     /** TigerMafia-ს ბოტის ავტორიზაცია*/
     public static DiscordApi api = new DiscordApiBuilder()
-            .setToken("ODg1NTg4NzQ3OTA1Nzk0MDUw.YTpOyg.BE6Uabv7TNcI0Lwh8m_TseXvHzg")
+            .setToken("ODg1NTg4NzQ3OTA1Nzk0MDUw.YTpOyg.Dqx-EFVtthtGGmdOjNUSpSPs3Go")
             .login().join();
 
     public static void main(String[] args) {
@@ -39,6 +39,10 @@ public class DiscordBotApplication {
 
         /** ამატებს DiscordBotMessages-ში გაწერილ მესიჯებს */
         api.addListener(new DiscordBotMessages());
+        /** ქმნის ობიექტს და ბეჭდავს ტექსტს
+         * "მოგესალმებით სერვერზე, @USER "  */
+        DiscordBotMessages welcomeText = new DiscordBotMessages();
+        welcomeText.welcomeText();
 
         /** ქმნის დილამშვიდობისას ობიექტს და ბეჭდავს ტექსტს
          * "დილამშვიდობის ახალგაზრდებო!" 10:00 საათზე */

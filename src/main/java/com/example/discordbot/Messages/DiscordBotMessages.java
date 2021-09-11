@@ -1,10 +1,16 @@
 package com.example.discordbot.Messages;
 
+import com.example.discordbot.DiscordBotApplication;
+import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
-public class DiscordBotMessages implements MessageCreateListener {
+import java.util.Optional;
+
+import static com.example.discordbot.DiscordBotApplication.api;
+
+public class DiscordBotMessages extends DiscordBotApplication implements MessageCreateListener {
     /**
      * general ჩენელის ID: 570343070995054594L;
      * bot-test ჩენელის ID: 885589647537881108L;
@@ -21,5 +27,12 @@ public class DiscordBotMessages implements MessageCreateListener {
             event.getChannel().sendMessage("მპუ \uD83D\uDE18");
         }
     }
+    public void welcomeText(){
+        api.addServerMemberJoinListener(event -> {
+            Optional<TextChannel> channel = api.getTextChannelById(570343070995054594L);
+            channel.ifPresent(textChannel -> textChannel.sendMessage("მოგესალმებით სერვერზე, " + event.getUser().getMentionTag() + "!"));
+        });
+    }
+
 
 }
