@@ -1,4 +1,4 @@
-package com.example.discordbot;
+package com.example.discordbot.BotAudio;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.audio.AudioSource;
