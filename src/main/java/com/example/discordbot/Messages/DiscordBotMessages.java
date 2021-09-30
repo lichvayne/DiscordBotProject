@@ -99,7 +99,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
         commands.setTitle("მეკობოტის ბრძანებები")
                 .setColor(Color.RED)
                 .setDescription("გიყვარვარ თუ გკიდივარ?\n.სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ");
-        textChannel.getBotTest().sendMessage(commands);
+        textChannel.getGeneral().sendMessage(commands);
     }
 
     public void welcomeText() {
