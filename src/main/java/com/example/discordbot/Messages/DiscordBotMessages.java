@@ -12,6 +12,7 @@ import org.javacord.api.listener.message.MessageCreateListener;
 
 import java.awt.*;
 import java.util.Optional;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import static com.example.discordbot.DiscordBotApplication.api;
 
@@ -46,6 +47,31 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
                     }
                 }).removeAfter(30, TimeUnit.MINUTES);
             });
+        }
+        if (message.getContent().equalsIgnoreCase("გიყვარვარ თუ გკიდივარ?")) {
+            Random rand = new Random();
+            int random = rand.nextInt(25-1) + 1;
+            if(random<=5) {
+                event.getChannel().sendMessage("მიყვარხარ! \uD83D\uDE18").thenAccept(message1 -> {
+                    message1.addReactionAddListener(reactionEvent -> {
+
+                        if (reactionEvent.getEmoji().equalsEmoji("👎")) {
+                            reactionEvent.deleteMessage();
+                        }
+                    }).removeAfter(30, TimeUnit.MINUTES);
+                });
+            }
+            if(random>5) {
+                event.getChannel().sendMessage("მკიდიხარ!").thenAccept(message1 -> {
+                    message1.addReactionAddListener(reactionEvent -> {
+
+                        if (reactionEvent.getEmoji().equalsEmoji("👎")) {
+                            reactionEvent.deleteMessage();
+                        }
+                    }).removeAfter(30, TimeUnit.MINUTES);
+                });
+            }
+
         }
         if (message.getContent().equalsIgnoreCase("მპუ")) {
             event.getChannel().sendMessage("მპუ \uD83D\uDE18").thenAccept(message2 -> {
