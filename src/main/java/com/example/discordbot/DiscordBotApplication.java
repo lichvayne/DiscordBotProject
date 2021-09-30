@@ -33,8 +33,8 @@ public class DiscordBotApplication {
          * "მოგესალმებით სერვერზე, @USER "  */
         DiscordBotMessages welcomeText = new DiscordBotMessages();
         welcomeText.welcomeText();
-        BotTaskOnTime botTaskOnTime = new BotTaskOnTime();
-        botTaskOnTime.goodMorning();
+//        BotTaskOnTime botTaskOnTime = new BotTaskOnTime();
+//        botTaskOnTime.goodMorning();
 
 
     }

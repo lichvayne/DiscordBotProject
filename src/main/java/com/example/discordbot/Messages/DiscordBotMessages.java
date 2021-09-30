@@ -57,7 +57,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
             });
         }
         if (message.getContent().equalsIgnoreCase(".ბრძანებები")) {
-
+          botCommands();
         }
 
         String genshinCommand = event.getMessageContent();
@@ -72,8 +72,8 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
         ServerTextChannels textChannel = new ServerTextChannels();
         commands.setTitle("მეკობოტის ბრძანებები")
                 .setColor(Color.RED)
-                .setDescription(".სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ")
-        textChannel.getJuzonebi().sendMessage(songInfo);
+                .setDescription(".სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ");
+        textChannel.getBotTest().sendMessage(commands);
     }
 
     public void welcomeText() {
