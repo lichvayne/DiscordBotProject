@@ -25,9 +25,6 @@ public class DiscordBotApplication {
     public static void main(String[] args) throws InterruptedException, TrackSearchException {
         SpringApplication.run(DiscordBotApplication.class, args);
 
-        /** ბოტის მთავარი ბრძანება: /account */
-        SlashCommand.with("account", "A simple ping pong command!").createGlobal(api).join();
-
         /** ამატებს DiscordBotMessages-ში გაწერილ მესიჯებს */
         api.addListener(new DiscordBotMessages());
         api.addListener(new DiscordBotAudio());
@@ -36,8 +33,8 @@ public class DiscordBotApplication {
          * "მოგესალმებით სერვერზე, @USER "  */
         DiscordBotMessages welcomeText = new DiscordBotMessages();
         welcomeText.welcomeText();
-//        BotTaskOnTime botTaskOnTime = new BotTaskOnTime();
-//        botTaskOnTime.goodMorning();
+        BotTaskOnTime botTaskOnTime = new BotTaskOnTime();
+        botTaskOnTime.goodMorning();
 
 
     }

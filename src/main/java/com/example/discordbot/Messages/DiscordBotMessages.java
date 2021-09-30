@@ -3,22 +3,25 @@ package com.example.discordbot.Messages;
 
 import com.example.discordbot.BotAudio.YoutubeSearchSystem;
 import com.example.discordbot.GenshinImpact.Genshin;
+import com.example.discordbot.ServerTextChannels.ServerTextChannels;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+
+import java.awt.*;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import static com.example.discordbot.DiscordBotApplication.api;
 
 public class DiscordBotMessages extends Thread implements MessageCreateListener {
     public static boolean stop = false;
-    public String characterName;
+    Genshin genshin = new Genshin();
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
 
         Message message = event.getMessage();
-        Genshin genshin = new Genshin();
 
 
 
@@ -53,9 +56,24 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
                 }).removeAfter(30, TimeUnit.MINUTES);
             });
         }
-            String characterName = message.getContent().toLowerCase();
-           genshin.getCharacter(characterName);
+        if (message.getContent().equalsIgnoreCase(".ბრძანებები")) {
 
+        }
+
+        String genshinCommand = event.getMessageContent();
+        String characterName;
+        if (genshinCommand.contains(".genshin")) {
+            characterName = genshinCommand.substring(8).trim();
+            genshin.containsCharacter(characterName);
+        }
+
+    }public void botCommands() {
+        EmbedBuilder commands = new EmbedBuilder();
+        ServerTextChannels textChannel = new ServerTextChannels();
+        commands.setTitle("მეკობოტის ბრძანებები")
+                .setColor(Color.RED)
+                .setDescription(".სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ")
+        textChannel.getJuzonebi().sendMessage(songInfo);
     }
 
     public void welcomeText() {

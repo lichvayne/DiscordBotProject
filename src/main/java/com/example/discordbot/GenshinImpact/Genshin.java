@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 public class Genshin {
     private static HttpURLConnection connection;
-    private ArrayList<String> characters = new ArrayList<>();
+    public ArrayList<String> characters = new ArrayList<>();
 
     public Genshin(){
         characterInitializer();
+
     }
 
     public void connect(String characterName) {
@@ -70,7 +71,7 @@ public class Genshin {
         }
 
     }
-
+    /** ამატებს ქერექთერებს ლისტში */
     public void characterInitializer() {
         BufferedReader reader;
         String line;
@@ -99,12 +100,13 @@ public class Genshin {
 
     }
 
-    public void getCharacter(String characterName) {
+    public void containsCharacter(String characterName) {
         for(int i = 0;i<this.characters.size();i++){
             if(this.characters.get(i).contains(characterName)){
                 connect(characterName);
             }
         }
+
     }
 
     public void createMessage(String characterName, String gender, String birthday, String rarity) {
@@ -114,7 +116,7 @@ public class Genshin {
                 .setImage("https://genshinlist.com/assets/img/characters/" + characterName + ".png")
                 .setColor(Color.RED)
                 .setDescription(gender + "\n" + birthday + "\n" + rarity);
-        textChannel.getBotTest().sendMessage(genshinEmbed);
+        textChannel.getGenshin().sendMessage(genshinEmbed);
     }
 
 }
