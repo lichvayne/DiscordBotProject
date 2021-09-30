@@ -2,6 +2,7 @@ package com.example.discordbot.Messages;
 
 
 import com.example.discordbot.BotAudio.YoutubeSearchSystem;
+import com.example.discordbot.GenshinImpact.Genshin;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -10,13 +11,17 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import static com.example.discordbot.DiscordBotApplication.api;
 
-public class DiscordBotMessages implements MessageCreateListener {
+public class DiscordBotMessages extends Thread implements MessageCreateListener {
     public static boolean stop = false;
-
+    public String characterName;
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
 
         Message message = event.getMessage();
+        Genshin genshin = new Genshin();
+
+
+
         if (message.getContent().equalsIgnoreCase(".გაჩერება")) {
             if(!stop) {
                 stop = true;
@@ -32,6 +37,7 @@ public class DiscordBotMessages implements MessageCreateListener {
         if (message.getContent().equalsIgnoreCase("გამარჯობა")) {
             event.getChannel().sendMessage("გაგიმარჯოს").thenAccept(message1 -> {
                 message1.addReactionAddListener(reactionEvent -> {
+
                     if (reactionEvent.getEmoji().equalsEmoji("👎")) {
                         reactionEvent.deleteMessage();
                     }
@@ -46,32 +52,9 @@ public class DiscordBotMessages implements MessageCreateListener {
                     }
                 }).removeAfter(30, TimeUnit.MINUTES);
             });
-
-
         }
-//        if (message.getContent().equalsIgnoreCase(".ბრძანებები")) {
-//            event.getChannel().sendMessage("ბოტის ბრძანებები:\n" +
-//                    "| .სიმღერა სახელი\n" +
-//                    "| .გაჩერება\n" +
-//                    "| მპუ\n" +
-//                    "| გამარჯობა").thenAccept(message1 -> {
-//                message1.addReactionAddListener(reactionEvent -> {
-//                    if (reactionEvent.getEmoji().equalsEmoji("👎")) {
-//                        reactionEvent.deleteMessage();
-//                    }
-//                }).removeAfter(30, TimeUnit.MINUTES);
-//            });
-//        }
-        if (message.getContent().equalsIgnoreCase(".შემდეგი")) {
-            event.getChannel().sendMessage("ჩაირთო შემდეგი სიმღერა").thenAccept(message1 -> {
-                message1.addReactionAddListener(reactionEvent -> {
-                    if (reactionEvent.getEmoji().equalsEmoji("👎")) {
-                        reactionEvent.deleteMessage();
-                    }
-                }).removeAfter(30, TimeUnit.MINUTES);
-            });
-        }
-
+            String characterName = message.getContent().toLowerCase();
+           genshin.getCharacter(characterName);
 
     }
 
