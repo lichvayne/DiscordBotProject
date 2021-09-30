@@ -98,7 +98,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
         ServerTextChannels textChannel = new ServerTextChannels();
         commands.setTitle("მეკობოტის ბრძანებები")
                 .setColor(Color.RED)
-                .setDescription(".სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ");
+                .setDescription("გიყვარვარ თუ გკიდივარ?\n.სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ");
         textChannel.getBotTest().sendMessage(commands);
     }
 
