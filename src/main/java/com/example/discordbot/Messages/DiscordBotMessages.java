@@ -36,7 +36,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
                         }
                     }).removeAfter(30, TimeUnit.MINUTES);
                 });
-            }else event.getChannel().sendMessage("სიმღერა ისედაც გაჩერებულია მაგრამ შენ ყრუ ხარ!");
+            }else event.getChannel().sendMessage("სიმღერა ისედაც გაჩერებულია!");
         }
         if (message.getContent().equalsIgnoreCase("გამარჯობა")) {
             event.getChannel().sendMessage("გაგიმარჯოს").thenAccept(message1 -> {
@@ -48,7 +48,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
                 }).removeAfter(30, TimeUnit.MINUTES);
             });
         }
-        if (message.getContent().equalsIgnoreCase("გიყვარვარ თუ გკიდივარ?")) {
+        if (message.getContent().equalsIgnoreCase("გიყვარვარ?")) {
             Random rand = new Random();
             int random = rand.nextInt(25-1) + 1;
             if(random<=5) {
@@ -62,7 +62,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
                 });
             }
             if(random>5) {
-                event.getChannel().sendMessage("მკიდიხარ!").thenAccept(message1 -> {
+                event.getChannel().sendMessage("არ მიყვარხარ!").thenAccept(message1 -> {
                     message1.addReactionAddListener(reactionEvent -> {
 
                         if (reactionEvent.getEmoji().equalsEmoji("👎")) {
@@ -98,7 +98,7 @@ public class DiscordBotMessages extends Thread implements MessageCreateListener 
         ServerTextChannels textChannel = new ServerTextChannels();
         commands.setTitle("მეკობოტის ბრძანებები")
                 .setColor(Color.RED)
-                .setDescription("გიყვარვარ თუ გკიდივარ?\n.სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ");
+                .setDescription("გიყვარვარ?\n.სიმღერა სახელი\n.გაჩერება\n.genshin სახელი\nგამარჯობა\nმპუ");
         textChannel.getGeneral().sendMessage(commands);
     }
 
